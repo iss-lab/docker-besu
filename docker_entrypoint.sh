@@ -11,11 +11,21 @@ ${PORT_WS:=8546}
 ${PORT_GRAPHQL:=8547}
 ${PORT_METRICS:=9545}
 
-[ ! -z ${BESU_CONFIG_TOML_BASE64} ] && echo "${BESU_CONFIG_TOML_BASE64}" | base64 -d > ${BESU_CONFIG_DIRECTORY}/config.toml
-[ ! -z ${BESU_CONFIG_GENESIS_BASE64} ] && echo "${BESU_CONFIG_GENESIS_BASE64}" | base64 -d > ${BESU_CONFIG_DIRECTORY}/genesis.json
-[ ! -z ${BESU_PRIVATE_KEY_BASE64} ] && echo "${BESU_PRIVATE_KEY_BASE64}" | base64 -d > ${BESU_KEYS_DIRECTORY}/key
-[ ! -z ${BESU_PUBLIC_KEY_BASE64} ] && echo "${BESU_PUBLIC_KEY_BASE64}" | base64 -d > ${BESU_KEYS_DIRECTORY}/key.pub
-[ ! -z ${BESU_BOOTNODE_PUBLIC_KEY_BASE64} ] && echo "${BESU_BOOTNODE_PUBLIC_KEY_BASE64}" | base64 -d > ${BESU_PUBLIC_KEY_DIRECTORY}/bootnode_pubkey
+[ ! -z ${BESU_CONFIG_TOML_BASE64} ] && \
+  rm -f ${BESU_CONFIG_DIRECTORY}/config.toml && \
+  echo "${BESU_CONFIG_TOML_BASE64}" | base64 -d > ${BESU_CONFIG_DIRECTORY}/config.toml
+[ ! -z ${BESU_CONFIG_GENESIS_BASE64} ] && \
+  rm -f ${BESU_CONFIG_DIRECTORY}/genesis.json && \
+  echo "${BESU_CONFIG_GENESIS_BASE64}" | base64 -d > ${BESU_CONFIG_DIRECTORY}/genesis.json
+[ ! -z ${BESU_PRIVATE_KEY_BASE64} ] && \
+  rm -f ${BESU_KEYS_DIRECTORY}/key && \
+  echo "${BESU_PRIVATE_KEY_BASE64}" | base64 -d > ${BESU_KEYS_DIRECTORY}/key
+[ ! -z ${BESU_PUBLIC_KEY_BASE64} ] && \
+  rm -f ${BESU_KEYS_DIRECTORY}/key.pub && \
+  echo "${BESU_PUBLIC_KEY_BASE64}" | base64 -d > ${BESU_KEYS_DIRECTORY}/key.pub
+[ ! -z ${BESU_BOOTNODE_PUBLIC_KEY_BASE64} ] && \
+  rm -f ${BESU_PUBLIC_KEY_DIRECTORY}/bootnode_pubkey && \
+  echo "${BESU_BOOTNODE_PUBLIC_KEY_BASE64}" | base64 -d > ${BESU_PUBLIC_KEY_DIRECTORY}/bootnode_pubkey
 
 ${BOOTNODES_ARG:=--bootnodes}
 
