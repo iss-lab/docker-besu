@@ -1,4 +1,4 @@
-ARG BESU_VERSION=latest
+ARG BESU_VERSION=1.4.5
 
 FROM hyperledger/besu:$BESU_VERSION
 
