@@ -1,8 +1,8 @@
 #!/bin/bash
 
-: ${BESU_CONFIG_DIRECTORY:=/config/}
-: ${BESU_KEYS_DIRECTORY:=/opt/besu/keys/}
-: ${BESU_PUBLIC_KEY_DIRECTORY:=/opt/besu/public-keys/}
+: ${BESU_CONFIG_DIRECTORY:=/config}
+: ${BESU_KEYS_DIRECTORY:=/opt/besu/keys}
+: ${BESU_PUBLIC_KEY_DIRECTORY:=/opt/besu/public-keys}
 
 : ${HOST:=127.0.0.1}
 : ${PORT_P2P:=30303}
@@ -35,6 +35,7 @@ if [[ ! -z "${BESU_BOOTNODE_P2P_ADDRESS}" ]]; then
   bootnode_enode_address="enode://${bootnode_pubkey}@${BESU_BOOTNODE_P2P_ADDRESS}"
   BOOTNODES_ARG=--bootnodes=${bootnode_enode_address}
 else
+  # Start Besu as a bootnode
   bootnode_enode_address="enode://${bootnode_pubkey}@${HOST}:${PORT_P2P}"
   echo "Starting bootnode with enode_address: ${bootnode_enode_address}"
   echo "Connect additional nodes using BESU_BOOTNODE_P2P_ADDRESS=${HOST}:${PORT_P2P}"
