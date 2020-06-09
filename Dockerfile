@@ -1,6 +1,6 @@
 ARG BESU_VERSION=1.4.5
 
-FROM hyperledger/besu:$BESU_VERSION
+FROM isslab/exflo-besu:$BESU_VERSION
 
 COPY docker_entrypoint.sh /
 COPY config/config.toml /config/

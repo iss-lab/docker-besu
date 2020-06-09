@@ -7,10 +7,8 @@ This repository contains scripts and configurations to build a flexible Docker i
 Choose an available [hyperledger/besu tag](https://hub.docker.com/r/hyperledger/besu/tags), and supply it as a build arg to `docker build`.
 
 ```
-# BESU_VERSION=1.4.4
-# BESU_VERSION=1.4.5
-BESU_VERSION=latest
-docker build --build-arg BESU_VERSION=${BESU_VERSION} -t isslab/besu:${BESU_VERSION} .
+BESU_VERSION=1.4.5
+docker build --build-arg BESU_VERSION=${BESU_VERSION} -t isslab/dcos-exflo-besu:${BESU_VERSION} .
 ```
 
 ## Running the Image
@@ -18,7 +16,7 @@ docker build --build-arg BESU_VERSION=${BESU_VERSION} -t isslab/besu:${BESU_VERS
 The following command starts a besu bootnode using the included [config/genesis.json](./config/genesis.json) and keys found in [config/keys/](./config/keys/). The ports used are defined by environment variable default vaules found in [docker_entrypoint.sh](./docker_entrypoint.sh).
 
 ```
-docker run -d --name=besu-bootnode --network=host isslab/besu:${BESU_VERSION}
+docker run -d --name=besu-bootnode --network=host isslab/dcos-exflo-besu:${BESU_VERSION}
 ```
 
 Find the `BESU_BOOTNODE_P2P_ADDRESS` in the logs:
@@ -45,5 +43,5 @@ docker run -d --name=besu-validator --network=host \
   -e PORT_WS=8556 \
   -e PORT_GRAPHQL=8557 \
   -e PORT_METRICS=9555 \
-  isslab/besu:${BESU_VERSION}
+  isslab/dcos-exflo-besu:${BESU_VERSION}
 ```

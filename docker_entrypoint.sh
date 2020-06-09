@@ -4,6 +4,9 @@
 : ${BESU_KEYS_DIRECTORY:=/opt/besu/keys}
 : ${BESU_PUBLIC_KEY_DIRECTORY:=/opt/besu/public-keys}
 
+: ${BESU_PLUGIN_EXFLO_POSTGRES_ENABLED:=false}
+: ${BESU_PLUGIN_EXFLO_KAFKA_ENABLED:=false}
+
 : ${HOST:=127.0.0.1}
 : ${PORT_P2P:=30303}
 : ${PORT_HTTP:=8545}
